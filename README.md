@@ -29,9 +29,11 @@ Test Program : Intellij .http
 - [ ] Review a restaurant
 
 ### Owner
-- [ ] Register a restaurant
+- [x] Register a restaurant
 - [ ] Inquire about reservations
 
 #### Owner Additional Function
 - [ ] approve or reject a reservation
 
+#### Upgrade
+- [ ] Upgrade Login function with jwt
