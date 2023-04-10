@@ -1,1 +1,3 @@
 rootProject.name = 'gurumesi'
+include 'user-api'
+
