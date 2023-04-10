@@ -16,10 +16,10 @@ Test Program : Intellij .http
 
 ## User Server
 ### Customer
-- [ ]  Join the membership
+- [x]  Join the membership
 
 ### Owner
-- [ ]  Join the membership
+- [x]  Join the membership
 
 ##  Restaurant Server
 ### Customer
