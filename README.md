@@ -25,8 +25,10 @@ Test Program : Intellij .http
 ### Customer
 - [ ] Inquire about a restaurant
 - [ ] Book a reservation
-- [ ] confirm a visit
 - [ ] Review a restaurant
+
+### Kiosk
+- [ ] confirm a visit
 
 ### Owner
 - [x] Register a restaurant
