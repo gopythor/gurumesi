@@ -1,6 +1,7 @@
 package com.zerobase.gurumesi.restaurant.domain.model;
 
 import com.zerobase.gurumesi.user.domain.model.BaseEntity;
+import com.zerobase.gurumesi.user.domain.model.Customer;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -21,6 +22,9 @@ public class Review extends BaseEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private Restaurant restaurant;
 
-    private int star;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Customer customer;
+
+    private double star;
 
 }

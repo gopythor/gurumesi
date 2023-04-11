@@ -27,6 +27,7 @@ public class Restaurant extends BaseEntity {
     private String restaurantName;
     private String address;
     private int free;
+    private double star;
 
     public static Restaurant of(Long ownerId, AddRestaurantForm form){
         return Restaurant.builder()
@@ -36,4 +37,6 @@ public class Restaurant extends BaseEntity {
                 .free(form.getFree())
                 .build();
         }
+
+
 }
