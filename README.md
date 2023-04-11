@@ -23,15 +23,20 @@ Test Program : Intellij .http
 
 ##  Restaurant Server
 ### Customer
-- [ ] Inquire about a restaurant
+- [x] Inquire about a restaurant by sort(ASC NAME, ADDRESS, STAR)
+- [ ] Inquire about a restaurant detail
 - [ ] Book a reservation
-- [ ] confirm a visit
 - [ ] Review a restaurant
 
+### Kiosk
+- [ ] confirm a visit
+
 ### Owner
-- [ ] Register a restaurant
+- [x] Register a restaurant
 - [ ] Inquire about reservations
 
 #### Owner Additional Function
 - [ ] approve or reject a reservation
 
+#### Upgrade
+- [ ] Upgrade Login function with jwt
