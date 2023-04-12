@@ -23,7 +23,7 @@ Test Program : Intellij .http
 
 ##  Restaurant Server
 ### Customer
-- [x] Inquire about a restaurant by sort(ASC NAME, ADDRESS, STAR)
+- [x] Inquire about restaurants by sort(ASC NAME, ADDRESS, STAR)
 - [ ] Inquire about a restaurant detail
 - [ ] Book a reservation
 - [ ] Review a restaurant
