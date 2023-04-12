@@ -2,14 +2,12 @@ package com.zerobase.gurumesi.user.application;
 
 import com.zerobase.gurumesi.user.service.customer.SignUpCustomerService;
 import com.zerobase.gurumesi.user.domain.SignUpForm;
-import com.zerobase.gurumesi.user.exception.CustomException;
-import com.zerobase.gurumesi.user.exception.ErrorCode;
+import com.zerobase.gurumesi.exception.CustomException;
+import com.zerobase.gurumesi.exception.ErrorCode;
 import com.zerobase.gurumesi.user.service.owner.SignUpOwnerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-
-import java.time.LocalDateTime;
 
 @RequiredArgsConstructor
 @Service

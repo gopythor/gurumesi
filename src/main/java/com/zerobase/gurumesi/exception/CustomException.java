@@ -1,4 +1,4 @@
-package com.zerobase.gurumesi.user.exception;
+package com.zerobase.gurumesi.exception;
 
 import lombok.Getter;
 

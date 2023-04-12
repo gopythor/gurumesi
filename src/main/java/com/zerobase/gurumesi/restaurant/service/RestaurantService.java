@@ -1,17 +1,18 @@
 package com.zerobase.gurumesi.restaurant.service;
 
+import com.zerobase.gurumesi.exception.CustomException;
+import com.zerobase.gurumesi.exception.ErrorCode;
 import com.zerobase.gurumesi.restaurant.domain.model.RestaurantMapping;
+import com.zerobase.gurumesi.restaurant.domain.model.Review;
 import com.zerobase.gurumesi.restaurant.domain.restaurant.AddRestaurantForm;
 import com.zerobase.gurumesi.restaurant.domain.model.Restaurant;
 import com.zerobase.gurumesi.restaurant.domain.model.repository.RestaurantRepository;
-import com.zerobase.gurumesi.restaurant.domain.restaurant.RestaurantDto;
 import com.zerobase.gurumesi.restaurant.type.sortEnum;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -24,6 +25,9 @@ public class RestaurantService {
         return restaurantRepository.save(Restaurant.of(ownerId, form));
     }
 
+
+
+    @Transactional
     public List<RestaurantMapping> getList(sortEnum sort){
         if(sort == sortEnum.NAME){
             return restaurantRepository.findAllByOrderByRestaurantNameAsc();
@@ -33,5 +37,12 @@ public class RestaurantService {
             return restaurantRepository.findAllByOrderByAddressAsc();
         }
     }
+    @Transactional
+    public Restaurant getByRestaurantId(Long restaurantId) {
+        return restaurantRepository.findById(restaurantId)
+                .orElseThrow(() -> new CustomException(ErrorCode.NOT_FOUND_RESTAURANT));
+    }
+
+
 
 }

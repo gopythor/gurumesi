@@ -1,15 +1,16 @@
 package com.zerobase.gurumesi.restaurant.domain.model;
 
 import com.zerobase.gurumesi.restaurant.domain.restaurant.AddRestaurantForm;
+import com.zerobase.gurumesi.restaurant.type.Star;
 import com.zerobase.gurumesi.user.domain.model.BaseEntity;
 import lombok.*;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
+import org.springframework.data.jpa.repository.Query;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -27,7 +28,11 @@ public class Restaurant extends BaseEntity {
     private String restaurantName;
     private String address;
     private int free;
-    private double star;
+    private Double star;
+
+    public void setStar(Double star){
+        this.star = star;
+    }
 
     public static Restaurant of(Long ownerId, AddRestaurantForm form){
         return Restaurant.builder()
@@ -35,6 +40,7 @@ public class Restaurant extends BaseEntity {
                 .restaurantName(form.getName())
                 .address(form.getAddress())
                 .free(form.getFree())
+                .star(0D)
                 .build();
         }
 

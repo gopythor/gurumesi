@@ -21,20 +21,23 @@ public class RestaurantController {
 
     @PostMapping
     public ResponseEntity<?> addRestaurant(@RequestBody AddRestaurantForm form, @RequestParam Long ownerId) {
-        System.out.println(form+""+ownerId);
-
         return ResponseEntity.ok(
                 RestaurantDto.from(restaurantService.addRestaurant(ownerId, form)));
     }
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     public List<RestaurantMapping> inqueryRestaurantsBySort(@RequestParam(value ="sort", defaultValue ="NAME") sortEnum sort){
         return restaurantService.getList(sort);
     }
-//    @GetMapping("/detail")
-//    public List<Restaurant> viewRestaurantDetail(@RequestParam(value ="RestaurantID", defaultValue = "1") int restaurantID){
-//        return restaurantService.getList(sort);
-//    }
+
+    @GetMapping("/list")
+   public ResponseEntity<RestaurantDto> viewRestaurantDetail(@RequestParam(value ="RestaurantID", defaultValue = "1") Long restaurantID){
+        return ResponseEntity.ok(
+                RestaurantDto.from(restaurantService.getByRestaurantId(restaurantID))
+        );
+   }
+
+
 
 
 }

@@ -1,11 +1,14 @@
 package com.zerobase.gurumesi.user.domain.model;
 
+import com.zerobase.gurumesi.restaurant.domain.model.Review;
 import com.zerobase.gurumesi.user.domain.SignUpForm;
 import lombok.*;
 import org.hibernate.envers.AuditOverride;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 @Entity
