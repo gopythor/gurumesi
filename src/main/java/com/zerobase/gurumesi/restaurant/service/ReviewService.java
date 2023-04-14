@@ -23,7 +23,7 @@ public class ReviewService {
         Review review = reviewRepository.save(Review.of(form));
         Restaurant restaurant = restaurantRepository.findById(review.getRestaurantId())
                .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT));
-       Double avg = (restaurant.getStar() == 0) ?form.getStar().getValue() : (restaurant.getStar() + form.getStar().getValue())/2;
+       Double avg = reviewRepository.getAverage(restaurant.getId());
        restaurant.setStar(avg);
        return review;
     }

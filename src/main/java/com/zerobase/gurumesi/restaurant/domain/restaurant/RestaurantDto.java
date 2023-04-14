@@ -1,9 +1,8 @@
 package com.zerobase.gurumesi.restaurant.domain.restaurant;
 
 import com.zerobase.gurumesi.restaurant.domain.model.Restaurant;
-import com.zerobase.gurumesi.restaurant.service.RestaurantService;
 import lombok.*;
-import org.springframework.data.jpa.repository.Query;
+
 
 @Getter
 @AllArgsConstructor
@@ -16,6 +15,7 @@ public class RestaurantDto {
     private String restaurantName;
     private String address;
     private int free;
+    private Double star;
 
 
     public static RestaurantDto from(Restaurant restaurant){
@@ -26,6 +26,7 @@ public class RestaurantDto {
                 .restaurantName(restaurant.getRestaurantName())
                 .address(restaurant.getAddress())
                 .free(restaurant.getFree())
+                .star(restaurant.getStar())
                 .build();
     }
 

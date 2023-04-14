@@ -1,16 +1,12 @@
 package com.zerobase.gurumesi.restaurant.domain.model;
 
 import com.zerobase.gurumesi.restaurant.domain.restaurant.AddRestaurantForm;
-import com.zerobase.gurumesi.restaurant.type.Star;
 import com.zerobase.gurumesi.user.domain.model.BaseEntity;
 import lombok.*;
 import org.hibernate.envers.AuditOverride;
 import org.hibernate.envers.Audited;
-import org.springframework.data.jpa.repository.Query;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 @Builder
