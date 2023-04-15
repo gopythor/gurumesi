@@ -24,9 +24,12 @@ Test Program : Intellij .http
 ##  Restaurant Server
 ### Customer
 - [x] Inquire about restaurants by sort(ASC NAME, ADDRESS, STAR)
-- [ ] Inquire about a restaurant detail
+- [x] Inquire about a restaurant detail
+- [x] Review a restaurant
+       ㄴ later it will be checked for review writer verification.
+
+### Booking
 - [ ] Book a reservation
-- [ ] Review a restaurant
 
 ### Kiosk
 - [ ] confirm a visit
