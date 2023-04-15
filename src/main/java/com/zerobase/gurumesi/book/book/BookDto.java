@@ -6,6 +6,8 @@ import com.zerobase.gurumesi.restaurant.domain.model.Restaurant;
 import com.zerobase.gurumesi.restaurant.domain.restaurant.RestaurantDto;
 import lombok.*;
 
+import java.time.LocalDateTime;
+
 @Getter
 @AllArgsConstructor
 @NoArgsConstructor
@@ -13,23 +15,15 @@ import lombok.*;
 @ToString
 public class BookDto {
     private Long id;
-    private int year;
-    private int month;
-    private int day;
-    private int hour;
-    private int minute;
-    private long customerId;
-    private long restaurantId;
+    private LocalDateTime localDateTime;
+    private Long customerId;
+    private Long restaurantId;
 
     public static BookDto from(Book book){
 
         return BookDto.builder()
                 .id(book.getId())
-                .year(book.getYear())
-                .month(book.getMonth())
-                .day(book.getDay())
-                .hour(book.getHour())
-                .minute(book.getMinute())
+                .localDateTime(book.getBookingTime())
                 .customerId(book.getCustomerId())
                 .restaurantId(book.getRestaurantId())
                 .build();
