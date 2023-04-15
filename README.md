@@ -29,17 +29,18 @@ Test Program : Intellij .http
        ㄴ later it will be checked for review writer verification.
 
 ### Booking
-- [ ] Book a reservation
+- [x] Book a reservation
 
 ### Kiosk
 - [ ] confirm a visit
 
 ### Owner
 - [x] Register a restaurant
-- [ ] Inquire about reservations
+- [x] Inquire about reservations
 
 #### Owner Additional Function
-- [ ] approve or reject a reservation
+- [x] approve or reject a reservation
 
 #### Upgrade
 - [ ] Upgrade Login function with jwt
+- [ ] Upgrade Error function 
