@@ -5,6 +5,8 @@ public enum Status {
     Approved,
     Rejected,
     Complete,
+    Reviewed,
     User_Cancelled,
-    NoShow_Cancelled
+    NoShow_Cancelled,
+    Expired;
 }
