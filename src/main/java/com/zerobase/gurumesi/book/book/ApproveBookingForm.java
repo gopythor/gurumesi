@@ -14,5 +14,4 @@ public class ApproveBookingForm {
     Long ownerId;
     Long restaurantId;
     Long bookingId;
-    Status status;
 }
