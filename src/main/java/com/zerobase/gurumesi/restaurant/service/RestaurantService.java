@@ -3,7 +3,6 @@ package com.zerobase.gurumesi.restaurant.service;
 import com.zerobase.gurumesi.exception.CustomException;
 import com.zerobase.gurumesi.exception.ErrorCode;
 import com.zerobase.gurumesi.restaurant.domain.model.RestaurantMapping;
-import com.zerobase.gurumesi.restaurant.domain.model.Review;
 import com.zerobase.gurumesi.restaurant.domain.restaurant.AddRestaurantForm;
 import com.zerobase.gurumesi.restaurant.domain.model.Restaurant;
 import com.zerobase.gurumesi.restaurant.domain.model.repository.RestaurantRepository;
