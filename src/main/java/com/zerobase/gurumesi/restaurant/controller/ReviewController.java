@@ -17,6 +17,12 @@ import org.springframework.web.bind.annotation.*;
 public class ReviewController {
     private final ReviewService reviewService;
 
+    @GetMapping
+    public ResponseEntity<?> viewAvailableReviewByCustomer(Long customerId){
+        return ResponseEntity.ok(reviewService.viewAvailableReview(customerId));
+    }
+
+
     @PostMapping
     public ResponseEntity<?> giveReview(@RequestBody AddReviewForm form){
         return ResponseEntity.ok(
