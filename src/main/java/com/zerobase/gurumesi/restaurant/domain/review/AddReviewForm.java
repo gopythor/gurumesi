@@ -20,5 +20,7 @@ public class AddReviewForm {
     private Long customerID;
     @Schema(example = "1")
     private Long restaurantID;
+    @Schema(example = "1")
+    private Long bookingID;
 
 }
