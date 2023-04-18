@@ -34,7 +34,7 @@ Test Program : Intellij .http
 
 ### Kiosk
 - [x] confirm a visit
-- [x] check approved bookings 
+- [x]  check approved bookings
 
 ### Owner
 - [x] Register a restaurant
