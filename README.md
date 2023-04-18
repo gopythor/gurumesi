@@ -25,11 +25,12 @@ Test Program : Intellij .http
 ### Customer
 - [x] Inquire about restaurants by sort(ASC NAME, ADDRESS, STAR)
 - [x] Inquire about a restaurant detail
-- [x] Review a restaurant
-       ㄴ later it will be checked for review writer verification.
+- [x] Review a restaurant   
+  [x]        ㄴ later it will be checked for review writer verification.
 
 ### Booking
 - [x] Book a reservation
+- [X] Check Bookings and change to expired when booking time is left less than 10 min.
 
 ### Kiosk
 - [x] confirm a visit
