@@ -32,7 +32,7 @@ Test Program : Intellij .http
 - [x] Book a reservation
 
 ### Kiosk
-- [ ] confirm a visit
+- [x] confirm a visit
 
 ### Owner
 - [x] Register a restaurant
