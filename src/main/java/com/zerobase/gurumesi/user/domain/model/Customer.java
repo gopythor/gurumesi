@@ -7,6 +7,7 @@ import org.hibernate.envers.AuditOverride;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -31,6 +32,10 @@ public class Customer extends BaseEntity{
     private String phone;
     private LocalDate birth;
 
+    private LocalDateTime verifyExpiredAt;
+    private String verificationCode;
+    private boolean verify;
+
     public static Customer from(SignUpForm form){
         return Customer.builder()
                 .email(form.getEmail().toLowerCase(Locale.ROOT))
@@ -38,6 +43,7 @@ public class Customer extends BaseEntity{
                 .name(form.getName())
                 .birth(form.getBirth())
                 .phone(form.getPhone())
+                .verify(false)
                 .build();
     }
 

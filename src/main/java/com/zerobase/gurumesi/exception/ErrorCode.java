@@ -13,7 +13,10 @@ public enum ErrorCode {
     NOT_FOUND_AVAILABLE_BOOKING(HttpStatus.BAD_REQUEST, "이용 가능한 예약 이력을 찾을 수 없습니다."),
     PAST_BOOKING(HttpStatus.BAD_REQUEST, "날짜를 확인해주세요(과거 불가)"),
     FULLY_BOOKED(HttpStatus.BAD_REQUEST, "해당 시간대의 테이블 예약이 초과 하였습니다."),
-    NOT_BOOKED(HttpStatus.BAD_REQUEST, "예약 이력이 없습니다.");
+    NOT_BOOKED(HttpStatus.BAD_REQUEST, "예약 이력이 없습니다."),
+
+    //Login
+    LOGIN_CHECK_FAIL(HttpStatus.BAD_REQUEST, "아이디나 패스워드를 확인해 주세요.");
     private final HttpStatus httpStatus;
     private final String detail;
 }
