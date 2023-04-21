@@ -1,6 +1,8 @@
 package com.zerobase.gurumesi.user.controller;
 
+import com.zerobase.gurumesi.user.application.SignInApplication;
 import com.zerobase.gurumesi.user.domain.SignInForm;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -9,10 +11,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(value = "/signIn")
-public class SigninController {
+@RequiredArgsConstructor
+public class SignInController {
+
+    private final SignInApplication signInApplication;
 
     @PostMapping("/customer")
     public ResponseEntity<String> signInCustomer(@RequestBody SignInForm form){
-        return null;
+        return ResponseEntity.ok(signInApplication.customerLoginToken(form));
     }
 }

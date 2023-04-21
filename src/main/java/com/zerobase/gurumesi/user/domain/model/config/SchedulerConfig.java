@@ -1,4 +1,4 @@
-package com.zerobase.gurumesi.config;
+package com.zerobase.gurumesi.user.domain.model.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.SchedulingConfigurer;
