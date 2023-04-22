@@ -32,7 +32,7 @@ public class BookService {
 
     // 고객 식당 부킹
     @Transactional
-    public Book makeBooking(MakeBookingForm form){
+    public Book makeBooking(Long customerId, MakeBookingForm form){
         LocalDateTime localDateTime = LocalDateTime.of
                 (form.getYear(),form.getMonth(),form.getDay(),
                         form.getHour(), form.getMinute());
@@ -41,7 +41,7 @@ public class BookService {
          if(localDateTime.isBefore(LocalDateTime.now().plusMinutes(30))){
             throw new CustomException(ErrorCode.PAST_BOOKING);
         }
-        return bookRepository.save(Book.of(form));
+        return bookRepository.save(Book.of(customerId, form));
     }
 
     //고객 부킹 확인하기
@@ -52,9 +52,9 @@ public class BookService {
 
     //고객 부킹 취소하기
     @Transactional
-    public Book cancelBooking(CancelBookingForm form){
+    public Book cancelBooking(Long customerId, CancelBookingForm form){
         Book book = bookRepository.findByIdAndCustomerId
-                        (form.getBookingId(), form.getCustomerId())
+                        (form.getBookingId(), customerId)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_AVAILABLE_BOOKING));
         if(book.getStatus()==Status.Requested ||
                 book.getStatus()==Status.Approved){
@@ -67,7 +67,11 @@ public class BookService {
 
     // 점주 부킹 승인
     @Transactional
-    public Book approveBooking(ApproveBookingForm form){
+    public Book approveBooking(Long ownerId, ApproveBookingForm form){
+        //점주 확인
+        restaurantRepository.findByOwnerIdAndId(ownerId, form.getRestaurantId()).
+                orElseThrow(() -> new CustomException(NOT_AUTHORIZED_OWNER));
+
         //부킹 Id 조회, 요청 상태가 아니면 에러.
         Book book = bookRepository.findByIdAndStatus(form.getBookingId(), Status.Requested)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_BOOKING));
@@ -97,7 +101,11 @@ public class BookService {
 
     //점주 부킹 거절
     @Transactional
-    public Book rejectBooking(ApproveBookingForm form) {
+    public Book rejectBooking(Long ownerId, ApproveBookingForm form) {
+        //점주 확인
+        restaurantRepository.findByOwnerIdAndId(ownerId, form.getRestaurantId()).
+                orElseThrow(() -> new CustomException(NOT_AUTHORIZED_OWNER));
+
         Book book = bookRepository.findByIdAndStatus(form.getBookingId(), Status.Requested)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_BOOKING));
 
@@ -109,7 +117,10 @@ public class BookService {
 
     //점주 레스로랑 부킹 확인하기
     @Transactional
-    public List<BookDetailDto> ownerCheckBooking(Long restaurantId){
+    public List<BookDetailDto> ownerCheckBooking(Long ownerId, Long restaurantId){
+        restaurantRepository.findByOwnerIdAndId(ownerId, restaurantId).
+                orElseThrow(() -> new CustomException(NOT_AUTHORIZED_OWNER));
+
         return bookRepository.checkBookingOwner(restaurantId);
     }
 

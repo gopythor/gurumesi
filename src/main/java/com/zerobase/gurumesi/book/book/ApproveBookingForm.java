@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ApproveBookingForm {
-    Long ownerId;
     Long restaurantId;
     Long bookingId;
 }

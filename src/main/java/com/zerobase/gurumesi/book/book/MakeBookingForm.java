@@ -18,9 +18,6 @@ public class MakeBookingForm {
     @Schema(example = "1")
     private Long restaurantId;
 
-    @Schema(example = "1")
-    private Long customerId;
-
     @Schema(example = "2023")
     @Min(value= 2023, message ="2023년부터 이용 가능합니다.")
     private int year;
