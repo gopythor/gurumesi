@@ -14,7 +14,7 @@ import java.util.Locale;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-@AuditOverride(forClass = BaseEntity.class) // Customer 업데이트 될때마다 자동으로 BaseEntity 데이터도 변경됨
+@AuditOverride(forClass = BaseEntity.class) // Owner 업데이트 될때마다 자동으로 BaseEntity 데이터도 변경됨
 public class Owner extends BaseEntity{
     @Id
     @Column(name = "id", nullable = false)

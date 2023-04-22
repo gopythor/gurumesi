@@ -24,6 +24,7 @@ public class SignUpApplication {
             return "회원 가입에 성공하였습니다.";
         }
     }
+
     public String ownerSignUp(SignUpForm form) {
         if (signUpOwnerService.isEmailExist(form.getEmail())) {
             throw new CustomException(ErrorCode.ALREADY_REGISTERED_ACCOUNT);
