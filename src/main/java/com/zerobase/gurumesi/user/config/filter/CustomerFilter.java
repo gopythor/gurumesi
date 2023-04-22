@@ -1,7 +1,7 @@
-package config.filter;
+package com.zerobase.gurumesi.user.config.filter;
 
 import com.zerobase.gurumesi.domain.common.UserVo;
-import com.zerobase.gurumesi.user.domain.model.config.JwtAuthenticationProvider;
+import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
 import com.zerobase.gurumesi.user.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 
@@ -18,7 +18,8 @@ public class CustomerFilter implements Filter {
     private final CustomerService customerService;
 
     @Override
-    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+    public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+            throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         String token = req.getHeader("X-AUTH-TOKEN");
         if(!jwtAuthenticationProvider.validateToken(token)){
@@ -26,7 +27,9 @@ public class CustomerFilter implements Filter {
         }
         UserVo vo = jwtAuthenticationProvider.getUserVo(token);
         customerService.findByIdAndEmail(vo.getId(), vo.getEmail()).orElseThrow(
-                ()->new SecurityException("Invalid Access")
+                ()->new ServletException("Invalid Access")
         );
+        //재전송 해줘야 함.
+        chain.doFilter(request,response);
     }
 }

@@ -21,8 +21,7 @@ public class CustomerService {
 
     public Optional<Customer> findValidCustomer(String email, String password){
         return customerRepository.findByEmail(email).stream()
-                .filter(customer -> customer.getPassword().equals(password) &&
-                        customer.isVerify())
+                .filter(customer -> customer.getPassword().equals(password))
                 .findFirst();
     }
 }
