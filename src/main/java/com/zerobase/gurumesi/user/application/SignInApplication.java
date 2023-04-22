@@ -5,7 +5,7 @@ import com.zerobase.gurumesi.exception.CustomException;
 import com.zerobase.gurumesi.exception.ErrorCode;
 import com.zerobase.gurumesi.user.domain.SignInForm;
 import com.zerobase.gurumesi.user.domain.model.Customer;
-import com.zerobase.gurumesi.user.domain.model.config.JwtAuthenticationProvider;
+import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
 import com.zerobase.gurumesi.user.service.customer.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

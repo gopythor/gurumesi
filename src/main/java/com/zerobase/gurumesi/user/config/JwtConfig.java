@@ -1,6 +1,6 @@
-package config;
+package com.zerobase.gurumesi.user.config;
 
-import com.zerobase.gurumesi.user.domain.model.config.JwtAuthenticationProvider;
+import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

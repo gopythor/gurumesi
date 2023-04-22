@@ -1,4 +1,4 @@
-package com.zerobase.gurumesi.user.domain.model.config;
+package com.zerobase.gurumesi.domain.config;
 
 import com.zerobase.gurumesi.domain.common.UserVo;
 import com.zerobase.gurumesi.domain.common.UserType;
@@ -7,9 +7,12 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
 
 import java.util.Date;
 import java.util.Objects;
+
 
 public class JwtAuthenticationProvider {
     private String secretKey = "secretKey";
