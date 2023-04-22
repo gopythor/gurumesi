@@ -35,10 +35,10 @@ public class Book extends BaseEntity {
         this.status=status;
     }
 
-    public static Book of(MakeBookingForm form){
+    public static Book of(Long customerId, MakeBookingForm form){
         return Book.builder()
-                .customerId(form.getCustomerId())
                 .restaurantId(form.getRestaurantId())
+                .customerId(customerId)
                 .bookingTime(LocalDateTime.of(
                         form.getYear(), form.getMonth(), form.getDay(),
                                 form.getHour(), form.getMinute()))

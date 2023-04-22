@@ -28,15 +28,15 @@ public class ReviewService {
     private final BookRepository bookRepository;
 
     @Transactional
-    public Review giveStar(AddReviewForm form){
-        Review review = reviewRepository.save(Review.of(form));
+    public Review giveStar(Long customerId, AddReviewForm form){
+        Review review = reviewRepository.save(Review.of(customerId, form));
         Restaurant restaurant = restaurantRepository.findById(review.getRestaurantId())
                .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT));
         Book book = bookRepository.findById(form.getBookingID())
                 .orElseThrow(() -> new CustomException(NOT_FOUND_AVAILABLE_BOOKING));
 
         // 사용 완료되었고, 고객 ID가 일치하는가?
-        if(book.getStatus()==Status.Complete && book.getCustomerId() == form.getCustomerID()){
+        if(book.getStatus()==Status.Complete && book.getCustomerId() == customerId){
             Double avg = reviewRepository.getAverage(restaurant.getId());
             restaurant.setStar(avg);
             book.setStatus(Status.Reviewed);

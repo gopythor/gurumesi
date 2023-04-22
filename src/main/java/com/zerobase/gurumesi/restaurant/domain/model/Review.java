@@ -25,10 +25,10 @@ public class Review extends BaseEntity {
     private Long restaurantId;
     private Long customerId;
 
-    public static Review of(AddReviewForm form){
+    public static Review of(Long customerId, AddReviewForm form){
         return Review.builder()
                 .restaurantId(form.getRestaurantID())
-                .customerId(form.getCustomerID())
+                .customerId(customerId)
                 .star(form.getStar())
                 .build();
     }

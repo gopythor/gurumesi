@@ -10,6 +10,5 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CancelBookingForm {
-    Long customerId;
     Long bookingId;
 }
