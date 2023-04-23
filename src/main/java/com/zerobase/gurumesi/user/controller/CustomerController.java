@@ -6,15 +6,17 @@ import com.zerobase.gurumesi.exception.CustomException;
 import com.zerobase.gurumesi.user.domain.customer.CustomerDto;
 import com.zerobase.gurumesi.user.domain.model.Customer;
 import com.zerobase.gurumesi.user.service.customer.CustomerService;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import static com.zerobase.gurumesi.exception.ErrorCode.NOT_FOUND_USER;
-
+@Tag(name = "Token check for Customer", description = "Get information from the token")
 @RestController
 @RequestMapping("/customer")
 @RequiredArgsConstructor
@@ -25,6 +27,7 @@ public class CustomerController {
     private final CustomerService customerService;
 
 
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @GetMapping("/getinfo")
     public ResponseEntity<CustomerDto> getInfo(@RequestHeader(
             name = "X-AUTH-TOKEN") String token){

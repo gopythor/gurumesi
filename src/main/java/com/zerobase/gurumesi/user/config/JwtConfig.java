@@ -1,13 +1,13 @@
-package com.zerobase.gurumesi.user.config;
-
-import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-
-@Configuration
-public class JwtConfig {
-    @Bean
-    public JwtAuthenticationProvider jwtAuthenticationProvider(){
-        return new JwtAuthenticationProvider();
-    }
-}
+//package com.zerobase.gurumesi.user.config;
+//
+//import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
+//import org.springframework.context.annotation.Bean;
+//import org.springframework.context.annotation.Configuration;
+//
+//@Configuration
+//public class JwtConfig {
+//    @Bean
+//    public JwtAuthenticationProvider jwtAuthenticationProvider(){
+//        return new JwtAuthenticationProvider();
+//    }
+//}

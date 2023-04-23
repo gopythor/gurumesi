@@ -1,5 +1,8 @@
 package com.zerobase.gurumesi.domain.common;
 
+
 public enum UserType {
-    CUSTOMER,OWNER;
+    ROLE_CUSTOMER,
+    ROLE_OWNER;
+
 }

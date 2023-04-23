@@ -28,7 +28,7 @@ public class SignInApplication {
         // 2. 토큰을 발행하고
         // 3. 토큰을 response한다.
 
-        return provider.createToken(c.getEmail(), c.getId(), UserType.CUSTOMER);
+        return provider.createToken(c.getEmail(), c.getId(), UserType.ROLE_CUSTOMER);
     }
 
     public String ownerLoginToken(SignInForm form){
@@ -39,6 +39,6 @@ public class SignInApplication {
         // 2. 토큰을 발행하고
         // 3. 토큰을 response한다.
 
-        return provider.createToken(c.getEmail(), c.getId(), UserType.OWNER);
+        return provider.createToken(c.getEmail(), c.getId(), UserType.ROLE_OWNER);
     }
 }

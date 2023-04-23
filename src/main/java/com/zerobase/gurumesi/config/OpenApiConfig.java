@@ -1,4 +1,4 @@
-package config;
+package com.zerobase.gurumesi.config;
 
 
 
@@ -14,10 +14,12 @@ public class OpenApiConfig {
 
         Info info = new Info()
                 .version("v1.0.0")
-                .title("API 타이틀")
-                .description("API Description");
+                .title("Gurumesi")
+                .description("Restaurant booking management");
 
         return new OpenAPI()
                 .info(info);
     }
+
+
 }
