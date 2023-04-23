@@ -12,7 +12,7 @@ Language : Java
 DBMS : MariaDB
 Java Version : Java 11  
 IDE : Intellij IDEA 2023.3.3 (Ultimate Edition)  
-Test Program : Intellij .http  
+Test Program : Swagger
 
 ## User Server
 ### Customer
