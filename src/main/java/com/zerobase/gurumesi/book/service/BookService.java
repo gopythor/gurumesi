@@ -33,9 +33,12 @@ public class BookService {
     // 고객 식당 부킹
     @Transactional
     public Book makeBooking(Long customerId, MakeBookingForm form){
+
+        //레스토랑은 유효한가
         restaurantRepository.findById(form.getRestaurantId())
                 .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT));
 
+        //시간
         LocalDateTime localDateTime = LocalDateTime.of
                 (form.getYear(),form.getMonth(),form.getDay(),
                         form.getHour(), form.getMinute());
@@ -56,13 +59,18 @@ public class BookService {
     //고객 부킹 취소하기
     @Transactional
     public Book cancelBooking(Long customerId, CancelBookingForm form){
+        //부킹 찾아보기
         Book book = bookRepository.findByIdAndCustomerId
                         (form.getBookingId(), customerId)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_AVAILABLE_BOOKING));
+
+        //요청중이거나 승인 된 건인가?
         if(book.getStatus()==Status.Requested ||
                 book.getStatus()==Status.Approved){
             book.setStatus(Status.User_Cancelled);
         } else {
+
+        // 이미 취소되었거나 만료된 예약은 취소 안됨
             throw new CustomException(NOT_FOUND_AVAILABLE_BOOKING);
         }
             return book;
@@ -80,6 +88,7 @@ public class BookService {
                 .orElseThrow(() -> new CustomException(NOT_FOUND_BOOKING));
 
 
+        //예약 시간 전후 50을 위한 기준 설정
         LocalDateTime start = book.getBookingTime().minusMinutes(50);
         LocalDateTime end = book.getBookingTime().plusMinutes(50);
         Long restaurantId = book.getRestaurantId();
@@ -93,7 +102,7 @@ public class BookService {
                 .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT))
                 .getFree();
 
-        //시간 +-50분 총합 테이블보다 많으면 승인 불가
+        //시간 +-50분 기준 총합 테이블보다 많으면 승인 불가
         if (count >= limitTable){
             throw new CustomException(ErrorCode.FULLY_BOOKED);
         }
@@ -109,6 +118,7 @@ public class BookService {
         restaurantRepository.findByOwnerIdAndId(ownerId, form.getRestaurantId()).
                 orElseThrow(() -> new CustomException(NOT_AUTHORIZED_OWNER));
 
+        //부킹이 요청중이 아니면 거절 불가(정책 확인 필요 -> 승인건 도 취소가 되는지)
         Book book = bookRepository.findByIdAndStatus(form.getBookingId(), Status.Requested)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_BOOKING));
 
@@ -121,13 +131,14 @@ public class BookService {
     //점주 레스로랑 부킹 확인하기
     @Transactional
     public List<BookDetailDto> ownerCheckBooking(Long ownerId, Long restaurantId){
+        //레스토랑의 주인인지 확인
         restaurantRepository.findByOwnerIdAndId(ownerId, restaurantId).
                 orElseThrow(() -> new CustomException(NOT_AUTHORIZED_OWNER));
 
         return bookRepository.checkBookingOwner(restaurantId);
     }
 
-    //키오스크 부킹 확인하기
+    //키오스크 부킹 확인하기(레스토랑 / 전화번호)
     @Transactional
     public List<BookDetailDto> kioskCheckBooking(Long restaurantId, String phone){
         return bookRepository.kioskCustomer(restaurantId, phone);
@@ -136,9 +147,10 @@ public class BookService {
     //키오스크에서 컨펌하기
     @Transactional
     public Book kioskConfirmBooking(Long bookingId){
+        //부킹 번호 확인
         Book book = bookRepository.findById(bookingId)
                 .orElseThrow(() -> new CustomException(NOT_FOUND_AVAILABLE_BOOKING));
-
+        //주인의 승인 되었다면 완료 처리
         if(book.getStatus()==Status.Approved){
             book.setStatus(Status.Complete);
         } else {
@@ -149,6 +161,7 @@ public class BookService {
     }
 
 
+    //30초마다 현재 기준 10분남은 예약 노쇼/취소 처리
     @Scheduled(cron="0/30 * * * * ?")
     @Transactional
     public void noShowUpdateSchedule(){

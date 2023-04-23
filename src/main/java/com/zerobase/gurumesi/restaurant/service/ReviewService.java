@@ -29,9 +29,14 @@ public class ReviewService {
 
     @Transactional
     public Review giveStar(Long customerId, AddReviewForm form){
+
         Review review = reviewRepository.save(Review.of(customerId, form));
+
+        //레스토랑이 유효한가?
         Restaurant restaurant = restaurantRepository.findById(review.getRestaurantId())
                .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT));
+
+        //예약이 유효한가?
         Book book = bookRepository.findById(form.getBookingID())
                 .orElseThrow(() -> new CustomException(NOT_FOUND_AVAILABLE_BOOKING));
 
@@ -46,7 +51,7 @@ public class ReviewService {
         return review;
     }
 
-    //고객 ID로 리뷰 가능한 리스트 보기
+    //고객 ID로 리뷰 가능한 리스트 보기(사용 완료된 예약)
     public List<Book> viewAvailableReview(Long customerId){
         return bookRepository.findAllByCustomerIdAndStatus(customerId, Status.Complete);
     }
