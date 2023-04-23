@@ -44,5 +44,5 @@ Test Program : Intellij .http
 - [x] approve or reject a reservation
 
 #### Upgrade
-- [ ] Upgrade Login function with jwt
-- [ ] Upgrade Error function 
+- [x] Upgrade Login function with jwt
+- [x] Upgrade Error function 
