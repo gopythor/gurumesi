@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@Tag(name = "Sign up", description = "Sign up demo")
+@Tag(name = "Sign Up controller", description = "Sign Up both customer and Owner")
 @RestController
 @RequestMapping("/signup")
 @RequiredArgsConstructor

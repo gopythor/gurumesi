@@ -33,6 +33,9 @@ public class BookService {
     // 고객 식당 부킹
     @Transactional
     public Book makeBooking(Long customerId, MakeBookingForm form){
+        restaurantRepository.findById(form.getRestaurantId())
+                .orElseThrow(() -> new CustomException(NOT_FOUND_RESTAURANT));
+
         LocalDateTime localDateTime = LocalDateTime.of
                 (form.getYear(),form.getMonth(),form.getDay(),
                         form.getHour(), form.getMinute());

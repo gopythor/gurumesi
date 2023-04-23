@@ -7,9 +7,9 @@ import com.zerobase.gurumesi.domain.config.JwtAuthenticationProvider;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
-import org.springframework.context.annotation.Role;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,6 +25,7 @@ public class BookController {
     private final JwtAuthenticationProvider provider;
 
     //고객 부킹 생성
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @Operation(summary = "Booking by customer")
     @PostMapping("/customer")
     public ResponseEntity<?> makeBooking
@@ -43,6 +44,7 @@ public class BookController {
     }
 
     //고객 부킹 취소
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @Operation(summary= "Cancel By customer")
     @PutMapping("/customer")
     public ResponseEntity<?> cancelBooking(
@@ -53,6 +55,7 @@ public class BookController {
     }
 
     //고객 부킹 히스토리 확인 가능
+    @PreAuthorize("hasRole('ROLE_CUSTOMER')")
     @Operation(summary = "Customer can view his/her booking history")
     @GetMapping("/customer")
     public ResponseEntity<?> customerBookingView(
@@ -62,6 +65,7 @@ public class BookController {
     }
 
     //점주 레스토랑 ID로 예약 조회 가능
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @Operation(summary = "Owner can view booking status")
     @GetMapping("/owner")
     public List<BookDetailDto> ownerViewBooking(
@@ -73,6 +77,7 @@ public class BookController {
     }
 
     //점주 부킹 승인
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @Operation(summary = "Owner can approve a booking")
     @PutMapping("/owner/approve")
     public ResponseEntity<?> approveBooking(
@@ -84,6 +89,7 @@ public class BookController {
     }
 
     //점주 부킹 거부
+    @PreAuthorize("hasRole('ROLE_OWNER')")
     @Operation(summary = "Owner can reject a booking")
     @PutMapping("/owner/reject")
     public ResponseEntity<?> rejectBooking(
