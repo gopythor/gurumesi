@@ -19,6 +19,7 @@ public class RestaurantService {
 
     private final RestaurantRepository restaurantRepository;
 
+    //레스토랑 추가(주인 ID, 레스토랑 정보)
     @Transactional
     public Restaurant addRestaurant(Long ownerId, AddRestaurantForm form){
         return restaurantRepository.save(Restaurant.of(ownerId, form));
@@ -26,16 +27,24 @@ public class RestaurantService {
 
 
 
+    // 레스토랑 리스트 보기
     @Transactional
     public List<RestaurantMapping> getList(sortEnum sort){
+        //이름순
         if(sort == sortEnum.NAME){
             return restaurantRepository.findAllByOrderByRestaurantNameAsc();
+
+        //별점순
         } else if(sort == sortEnum.STAR){
             return restaurantRepository.findAllByOrderByStarAsc();
+
+        //주소순
         } else {
             return restaurantRepository.findAllByOrderByAddressAsc();
         }
     }
+
+    //레스토랑 정보 보기
     @Transactional
     public Restaurant getByRestaurantId(Long restaurantId) {
         return restaurantRepository.findById(restaurantId)
